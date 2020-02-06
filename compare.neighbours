@@ -1,0 +1,19 @@
+compare.neighbours <- function(x, mode = "queens",assign=NA){
+require("raster")
+if(is.numeric(mode)){
+dims <- mode}else if(mode == "rook"){
+dims <- 4}else if(mode == "queen"){
+dims <- 8}else if(mode == "bishop"){
+dims <- 16}
+out <- x
+pxls <- x@ncols*x@nrows
+for(n in 1:pxls){
+  val <- extract(x, n)
+  nghbrs <- extract(x, adjacent(x, cells = n, directions = dims)[,2])
+  if(isTRUE(all(val == nghbrs))){
+    out[n] <- val
+  }else if(!isTRUE(all(val == nghbrs))){
+    out[n] <- assign
+  }
+return(out)
+}
