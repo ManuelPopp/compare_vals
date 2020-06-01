@@ -1,4 +1,4 @@
-compare.neighbours <- function(x, mode = "queens", assign=NA){
+compare.neighbours <- function(x, mode = "queen", assign=NA){
 require("raster")
 if(is.numeric(mode)){
 dims <- mode}else if(mode == "rook"){
